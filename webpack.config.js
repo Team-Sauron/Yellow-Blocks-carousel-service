@@ -1,24 +1,24 @@
 const path = require('path');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
 
-  entry: "./Client/components/carousel.jsx",
+  entry: './Client/components/carousel.jsx',
 
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
     path: path.join(__dirname, 'public'),
   },
-  module : {
+  module: {
     rules: [{
       test: /\.jsx?$/,
       exclude: /(node_modules)/,
       use: {
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"]
-        }
-      }
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
     }],
-  }
-}
+  },
+};
