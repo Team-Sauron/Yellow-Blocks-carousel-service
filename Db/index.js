@@ -1,26 +1,44 @@
 const mongoose = require('mongoose');
+
 const url = 'mongodb://localhost/imageUrls';
 
 mongoose.connect(url, (err) => {
   if (err) {
-    return console.log('FAILED TO CONNECT: ', err);
-  } else {
-    console.log('CONNECTED!');
+    return console.log(`FAILED TO CONNECT: ${err}`);
   }
+  return console.log('CONNECTED!');
 });
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-var imageSchema = new Schema ({
-  url: {type: String, unique: true}
+const imageSchema = new Schema({
+  product: { type: Number, unique: true },
+  pictures: {
+    pic1: String,
+    pic2: String,
+    pic3: String,
+    pic4: String,
+    pic5: String,
+  },
 });
 
-var Images = mongoose.model('Images', imageSchema);
+const Images = mongoose.model('Images', imageSchema);
 
-module.exports.save = (input, callback) => {
-  var newImage = new Images ({
-    url: input
+const saveImage = (input) => {
+  input.save((err, result) => {
+    if (err) {
+      return (err, null);
+    }
+    return (null, result);
   });
+};
 
-  newImage.save()
-}
+const getImages = (number, callback) => {
+  Images.findOne({ product: number }).exec(callback);
+};
+
+module.exports = {
+  Images,
+  saveImage,
+  getImages,
+};
