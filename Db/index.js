@@ -19,6 +19,8 @@ const imageSchema = new Schema({
     pic3: String,
     pic4: String,
     pic5: String,
+    pic6: String,
+    pic7: String,
   },
 });
 
