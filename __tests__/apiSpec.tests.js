@@ -1,5 +1,4 @@
 const request = require('supertest');
-
 const app = require('../Server/index.js');
 
 describe("Test the root path", () => {
