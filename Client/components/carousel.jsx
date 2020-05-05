@@ -4,21 +4,33 @@ import $ from 'jquery';
 import styled from 'styled-components';
 import ImageBar from './ImageBar.jsx';
 
-const Container = styled.div`
-  border: 1px solid black;
-  background-color: rgb(248, 248, 248)
+const Wrapper = styled.div`
+display: grid;
+grid-template-columns: 100px 1fr 1fr;
+grid-template-areas:
+"arrowUp"
+"ImageBar ImageBox side"
+"arrowDown";
+background-color: rgb(248, 248, 248)
 `;
 const ImageBox = styled.div`
-  margin-left: 15%;
+  border: 2px solid orange;
+  grid-area:
 `;
-
+const ZoomBox = styled.div`
+  border: 2px solid orange;
+  width: 100%;
+`;
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      index: 1,
       images: [],
     };
+    this.nextImage = this.nextImage.bind(this);
+    this.prevImage = this.prevImage.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +44,6 @@ class Carousel extends React.Component {
       mehtod: 'GET',
       url: `/api/images/${id}`,
       success: (data) => {
-        console.log(data.pictures);
         this.setState({
           images: data.pictures,
         });
@@ -40,15 +51,37 @@ class Carousel extends React.Component {
     });
   }
 
+  nextImage(e) {
+    e.preventDefault();
+    if (this.state.images[`pic${this.state.index}`] === undefined) {
+      this.state.index = 0;
+    }
+    this.setState({
+      index: this.state.index += 1,
+    });
+  }
+
+  prevImage(e) {
+    e.preventDefault();
+    if (this.state.index - 1 !== 0) {
+      this.setState({
+        index: this.state.index -= 1,
+      });
+    }
+  }
+
   render() {
     const { images } = this.state;
+    const { index } = this.state;
     return (
-      <Container>
-        <ImageBox className="mainViewer">
-          <img src={images.pic1} alt="mainView" />
-        </ImageBox>
+      <Wrapper>
         <ImageBar images={images} />
-      </Container>
+        <ImageBox className="mainViewer">
+        <button onClick={this.nextImage}>right</button>
+        <button onClick={this.prevImage}>left</button>
+          <img src={images[`pic${this.state.index}`]} alt="mainView" />
+        </ImageBox>
+      </Wrapper>
     );
   }
 }
