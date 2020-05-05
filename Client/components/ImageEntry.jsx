@@ -8,8 +8,9 @@ const Thumbnail = styled.img`
 
 const Button = styled.button`
   display: block;
-  position: relative;
   cursor: pointer;
+  background-color: white;
+  border: 1px solid lightgrey;
 `;
 
 const ImageEntry = ({ image }) => (
