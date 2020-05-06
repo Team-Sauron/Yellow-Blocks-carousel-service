@@ -15,10 +15,16 @@ const ScrollDown = styled.button`
   cursor: pointer;
 `;
 
-const ImageBar = ({ images }) => (
+const ImageBar = ({ images, onClick }) => (
   <ImageHolder>
     <ScrollUp>/\</ScrollUp>
-    {Object.values(images).map((image) => <ImageEntry image={image} />)}
+    {images.map((image, key) => (
+      <ImageEntry
+        key={key}
+        image={image}
+        onClick={(e) => onClick(e)}
+      />
+    ))}
     <ScrollDown>\/</ScrollDown>
   </ImageHolder>
 );

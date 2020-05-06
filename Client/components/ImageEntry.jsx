@@ -13,8 +13,8 @@ const Button = styled.button`
   border: 1px solid lightgrey;
 `;
 
-const ImageEntry = ({ image }) => (
-  <Button type="button">
+const ImageEntry = ({ image, onClick }) => (
+  <Button type="button" onClick={(e) => onClick(e)}>
     <Thumbnail className="thumbNail" src={image} alt="" />
   </Button>
 );
