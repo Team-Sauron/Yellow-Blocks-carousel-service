@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ImageEntry from './ImageEntry.jsx';
 
 const ImageHolder = styled.div`
-  text-align: center;
 `;
 const ScrollUp = styled.button`
   grid-area: arrowUp

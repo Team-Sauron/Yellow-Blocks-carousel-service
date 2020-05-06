@@ -15,15 +15,19 @@ grid-template-areas:
 background-color: rgb(248, 248, 248)
 `;
 const ImageBox = styled.div`
+  poisition: relative;
   border: 2px solid orange;
-`;
+  height: 500px;
+  width: 680px;
+  text-align: center;
+  `;
 const NextButton = styled.button`
+  right: 0;
 `;
 const PrevButton = styled.button`
-
+  left: 0;
 `;
 const MainImage = styled.img`
-
 `;
 
 
@@ -120,8 +124,8 @@ class Carousel extends React.Component {
         <ImageBox className="mainViewer">
           <PrevButton type="button" onClick={this.prevImage}>left</PrevButton>
           <NextButton type="button" onClick={this.nextImage}>right</NextButton>
-          {isZoomed ? <ZoomBox /> : null}
           <MainImage onClick={this.zoomIn} src={defaultImg} alt="mainView" />
+          {isZoomed ? <ZoomBox /> : null}
         </ImageBox>
       </Wrapper>
     );
