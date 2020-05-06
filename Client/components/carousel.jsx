@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import styled from 'styled-components';
 import ImageBar from './ImageBar.jsx';
+import ZoomBox from './ZoomBox.jsx';
 
 const Wrapper = styled.div`
 display: grid;
@@ -16,13 +17,12 @@ background-color: rgb(248, 248, 248)
 const ImageBox = styled.div`
   border: 2px solid orange;
 `;
-const ZoomBox = styled.div`
-  border: 2px solid orange;
-  width: 100%;
-`;
 const NextButton = styled.button`
 `;
 const PrevButton = styled.button`
+
+`;
+const MainImage = styled.img`
 
 `;
 
@@ -34,11 +34,13 @@ class Carousel extends React.Component {
       index: 0,
       images: [],
       defaultImg: [],
+      isZoomed: false,
     };
 
     this.nextImage = this.nextImage.bind(this);
     this.prevImage = this.prevImage.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
+    this.zoomIn = this.zoomIn.bind(this);
   }
 
   componentDidMount() {
@@ -101,16 +103,25 @@ class Carousel extends React.Component {
     });
   }
 
+  zoomIn() {
+    const { isZoomed } = this.state;
+    this.setState({
+      isZoomed: !isZoomed,
+    });
+  }
+
   render() {
     const { images } = this.state;
     const { defaultImg } = this.state;
+    const { isZoomed } = this.state;
     return (
       <Wrapper>
         <ImageBar images={images} onClick={this.handleImageClick} />
         <ImageBox className="mainViewer">
           <PrevButton type="button" onClick={this.prevImage}>left</PrevButton>
           <NextButton type="button" onClick={this.nextImage}>right</NextButton>
-          <img src={defaultImg} alt="mainView" />
+          {isZoomed ? <ZoomBox /> : null}
+          <MainImage onClick={this.zoomIn} src={defaultImg} alt="mainView" />
         </ImageBox>
       </Wrapper>
     );
