@@ -1,9 +1,28 @@
-const request = require('supertest');
+/* eslint-disable no-undef */
+const supertest = require('supertest');
 const app = require('../Server/index.js');
 
-describe("Test to specified routes", () => {
-  test('response body length should be 1', async (done) => {
-    const response = await request(app).get('/api/images/1');
+const request = supertest(app);
+
+describe('Test to specified routes', () => {
+  test('response product should be 1', async (done) => {
+    const response = await request.get('/api/images/1');
+    expect(response.body.product).toBe(1);
+    done();
+  });
+});
+
+describe('Test to specified routes', () => {
+  test('response product to id:12 should be 12', async (done) => {
+    const response = await request.get('/api/images/12');
+    expect(response.body.product).toBe(12);
+    done();
+  });
+});
+
+describe('Test if id is over 100', () => {
+  test('it should return product number 1 id is over 100', async (done) => {
+    const response = await request.get('/api/images/101');
     expect(response.body.product).toBe(1);
     done();
   });
