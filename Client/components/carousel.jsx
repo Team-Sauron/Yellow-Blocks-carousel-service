@@ -24,14 +24,21 @@ const NextButton = styled.button`
   grid-area: ImageBox;
   position: absolute;
   margin-top: 35%;
-  margin-left: 600px;
+  margin-left: 590px;
   cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 `;
 const PrevButton = styled.button`
   grid-area: ImageBox;
   position: absolute;
+  width: 40px;
+  height: 40px;
   margin-top: 35%;
   cursor: pointer;
+  border-radius: 20px;
 `;
 const MainImage = styled.img`
   grid-area: ImageBox;
