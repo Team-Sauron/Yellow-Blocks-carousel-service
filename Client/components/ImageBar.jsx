@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import ImageEntry from './ImageEntry.jsx';
 
 const ImageHolder = styled.div`
+  grid-area: ImageBar;
   text-align: center;
+  margin-top: 50%;
 `;
 const ScrollUp = styled.button`
   grid-area: arrowUp

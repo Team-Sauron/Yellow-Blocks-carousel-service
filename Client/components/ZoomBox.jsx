@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TestBox = styled.div`
-  display: block;
   border: 10px solid orange;
+  z-index: 1000;
+  position: absolute;
+  width: 620px;
+  height: 480px;
 `;
 
 class ZoomBox extends React.Component {

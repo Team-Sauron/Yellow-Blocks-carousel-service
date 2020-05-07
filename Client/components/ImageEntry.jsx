@@ -11,6 +11,9 @@ const Button = styled.button`
   cursor: pointer;
   background-color: white;
   border: 1px solid lightgrey;
+  margin-left 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 const ImageEntry = ({ image, onClick }) => (

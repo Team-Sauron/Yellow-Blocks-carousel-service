@@ -9,21 +9,32 @@ const Wrapper = styled.div`
 display: grid;
 grid-template-columns: 100px 1fr 1fr;
 grid-template-areas:
-"arrowUp"
-"ImageBar ImageBox side"
-"arrowDown";
+"ImageBar ImageBox side";
 background-color: rgb(248, 248, 248)
 `;
 const ImageBox = styled.div`
+  grid-area: ImageBox;
   border: 2px solid orange;
+  text-align: center;
+  position: relative;
+  width: 650px;
+  height: 500px;
 `;
 const NextButton = styled.button`
+  grid-area: ImageBox;
+  position: absolute;
+  margin-top: 35%;
+  margin-left: 600px;
+  cursor: pointer;
 `;
 const PrevButton = styled.button`
-
+  grid-area: ImageBox;
+  position: absolute;
+  margin-top: 35%;
+  cursor: pointer;
 `;
 const MainImage = styled.img`
-
+  grid-area: ImageBox;
 `;
 
 
@@ -91,7 +102,7 @@ class Carousel extends React.Component {
     }
     if (index - 1 === -1) {
       this.setState({
-        index: images.length,
+        index: images.length - 1,
         defaultImg: images[index],
       });
     }
