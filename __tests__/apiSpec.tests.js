@@ -22,13 +22,13 @@ describe('Test to specified routes', () => {
 
 describe('Test if id is not in range', () => {
   test('it should return product number 1 id is over 100', async (done) => {
-    let response = await request.get('/api/images/101');
+    const response = await request.get('/api/images/101');
     expect(response.body.product).toBe(1);
     done();
   });
 
   test('it should return product 1 if id is less than 0', async (done) => {
-    let response = await request.get('/api/images/-1');
+    const response = await request.get('/api/images/-1');
     expect(response.body.product).toBe(1);
     done();
   });
