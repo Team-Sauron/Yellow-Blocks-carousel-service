@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.get('/api/images/:id', (req, res) => {
-  const id = Number(path.basename(req.url));
+  let id = Number(path.basename(req.url));
+  if (id > 100 || id < 1) {
+    id = 1;
+  }
   db.getImages(id, (err, result) => {
     if (err) {
       res.sendStatus(400);
