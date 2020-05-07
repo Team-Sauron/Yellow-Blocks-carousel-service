@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TestBox = styled.div`
+const ZoomIn = styled.div`
   border: 10px solid orange;
   z-index: 1000;
   position: absolute;
@@ -22,7 +22,7 @@ class ZoomBox extends React.Component {
 
   render() {
     return (
-      <TestBox>HELLO</TestBox>
+      <ZoomIn>HELLO</ZoomIn>
     );
   }
 }

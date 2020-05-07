@@ -19,6 +19,7 @@ const ImageBox = styled.div`
   position: relative;
   width: 650px;
   height: 500px;
+  overflow: hidden;
 `;
 const NextButton = styled.button`
   grid-area: ImageBox;
@@ -30,6 +31,12 @@ const NextButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  opacity: 0.602;
+  background-color: rgb(44, 44, 44);
+
+  &:hover {
+    background-color: white;
+  }
 `;
 const PrevButton = styled.button`
   grid-area: ImageBox;
@@ -39,6 +46,12 @@ const PrevButton = styled.button`
   margin-top: 35%;
   cursor: pointer;
   border-radius: 20px;
+  opacity: 0.602;
+  background-color: rgb(44, 44, 44);
+
+  &:hover {
+    background-color: white;
+  }
 `;
 const MainImage = styled.img`
   grid-area: ImageBox;
