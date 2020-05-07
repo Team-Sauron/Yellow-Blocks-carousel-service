@@ -5,22 +5,22 @@ import styled from 'styled-components';
 import ImageBar from './ImageBar.jsx';
 import ZoomBox from './ZoomBox.jsx';
 
-const Wrapper = styled.div`
-display: grid;
-grid-template-columns: 100px 1fr 1fr;
-grid-template-areas:
-"ImageBar ImageBox side";
-background-color: rgb(248, 248, 248)
-`;
-const ImageBox = styled.div`
-  grid-area: ImageBox;
-  border: 2px solid orange;
-  text-align: center;
-  position: relative;
-  width: 750px;
-  height: 610px;
-  overflow: hidden;
-`;
+// const Wrapper = styled.div`
+// display: grid;
+// grid-template-columns: 100px 1fr 1fr;
+// grid-template-areas:
+// "ImageBar ImageBox side";
+// background-color: rgb(248, 248, 248)
+// `;
+// const ImageBox = styled.div`
+//   grid-area: ImageBox;
+//   border: 2px solid orange;
+//   text-align: center;
+//   position: relative;
+//   width: 750px;
+//   height: 610px;
+//   overflow: hidden;
+// `;
 const NextButton = styled.button`
   grid-area: ImageBox;
   position: absolute;
@@ -53,12 +53,12 @@ const PrevButton = styled.button`
     background-color: white;
   }
 `;
-const MainImage = styled.img`
-  grid-area: ImageBox;
-  margin-top: 15px;
-  width: 720px;
-  height: 580px;
-`;
+// const MainImage = styled.img`
+//   grid-area: ImageBox;
+//   margin-top: 15px;
+//   width: 720px;
+//   height: 580px;
+// `;
 
 
 class Carousel extends React.Component {
@@ -69,6 +69,7 @@ class Carousel extends React.Component {
       images: [],
       defaultImg: [],
       isZoomed: false,
+      scale: 1,
     };
 
     this.nextImage = this.nextImage.bind(this);
@@ -141,6 +142,7 @@ class Carousel extends React.Component {
     const { isZoomed } = this.state;
     this.setState({
       isZoomed: !isZoomed,
+      scale: 1.2,
     });
   }
 
@@ -149,15 +151,15 @@ class Carousel extends React.Component {
     const { defaultImg } = this.state;
     const { isZoomed } = this.state;
     return (
-      <Wrapper>
+      <div className="Wrapper">
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <ImageBox className="mainViewer">
-          <PrevButton type="button" onClick={this.prevImage}>left</PrevButton>
-          <NextButton type="button" onClick={this.nextImage}>right</NextButton>
+        <div className="ImageBox">
+          <button className="previousImg" type="button" onClick={this.prevImage}>left</button>
+          <button className="nextImg" type="button" onClick={this.nextImage}>right</button>
           {isZoomed ? <ZoomBox img={defaultImg} /> : null}
-          <MainImage onClick={this.zoomIn} src={defaultImg} alt="mainView" />
-        </ImageBox>
-      </Wrapper>
+          <img className="MainImage" onClick={this.zoomIn} src={defaultImg} alt="mainView" />
+        </div>
+      </div>
     );
   }
 }
