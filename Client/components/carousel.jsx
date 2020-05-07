@@ -17,15 +17,15 @@ const ImageBox = styled.div`
   border: 2px solid orange;
   text-align: center;
   position: relative;
-  width: 650px;
-  height: 500px;
+  width: 750px;
+  height: 610px;
   overflow: hidden;
 `;
 const NextButton = styled.button`
   grid-area: ImageBox;
   position: absolute;
-  margin-top: 35%;
-  margin-left: 590px;
+  margin-top: 38%;
+  margin-left: 690px;
   cursor: pointer;
   border-radius: 50%;
   width: 40px;
@@ -43,7 +43,7 @@ const PrevButton = styled.button`
   position: absolute;
   width: 40px;
   height: 40px;
-  margin-top: 35%;
+  margin-top: 38%;
   cursor: pointer;
   border-radius: 20px;
   opacity: 0.602;
@@ -55,6 +55,9 @@ const PrevButton = styled.button`
 `;
 const MainImage = styled.img`
   grid-area: ImageBox;
+  margin-top: 15px;
+  width: 720px;
+  height: 580px;
 `;
 
 
@@ -151,7 +154,7 @@ class Carousel extends React.Component {
         <ImageBox className="mainViewer">
           <PrevButton type="button" onClick={this.prevImage}>left</PrevButton>
           <NextButton type="button" onClick={this.nextImage}>right</NextButton>
-          {isZoomed ? <ZoomBox /> : null}
+          {isZoomed ? <ZoomBox img={defaultImg} /> : null}
           <MainImage onClick={this.zoomIn} src={defaultImg} alt="mainView" />
         </ImageBox>
       </Wrapper>

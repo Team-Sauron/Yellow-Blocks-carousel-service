@@ -12,19 +12,14 @@ const ZoomIn = styled.div`
   width: 580px;
   height: 450px;
 `;
+const ZoomedImg = styled.img`
+  transform: scale(1.1);
+`;
 
-class ZoomBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <ZoomIn>HELLO</ZoomIn>
-    );
-  }
-}
+const ZoomBox = ({ defaultImg }) => (
+  <ZoomIn>
+    <ZoomedImg src={defaultImg} />
+  </ZoomIn>
+);
 
 export default ZoomBox;
