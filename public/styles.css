@@ -8,7 +8,6 @@
 
 .ImageBox {
   grid-area: ImageBox;
-  border: 2px solid orange;
   text-align: center;
   position: relative;
   width: 750px;
@@ -21,13 +20,25 @@
   margin-top: 15px;
   width: 720px;
   height: 580px;
+  transition: 0.2s;
+  cursor: url(./zoomincursor.svg) 15 15, zoom-in;
+}
+
+.ZoomedImg {
+  grid-area: ImageBox;
+  margin-top: 15px;
+  width: 720px;
+  height: 580px;
+  transition: 0.2s;
+  transform: scale(2.0);
+  cursor: url(./zoomOut.svg) 15 15, zoom-out;
 }
 
 .nextImg {
   grid-area: ImageBox;
   position: absolute;
   margin-top: 38%;
-  margin-left: 690px;
+  margin-left: 681px;
   cursor: pointer;
   border-radius: 50%;
   width: 40px;
@@ -48,6 +59,10 @@
   background-color: rgb(44, 44, 44);
 }
 
+.MainImage:hover .nextImg {
+  opacity: 0.602;
+}
+
 .nextImg:hover, .previousImg:hover {
   background-color: white;
 }
@@ -62,7 +77,7 @@
   cursor: pointer;
   background-color: white;
   border: 1px solid lightgrey;
-  margin-left 10px;
+  margin-left: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
