@@ -1,4 +1,13 @@
 import React from 'react';
+
+const ImageEntry = ({ image, onClick }) => (
+  <button className="ImageButton" type="button" onClick={(e) => onClick(e)}>
+    <img className="Thumbnail" src={image} alt="" />
+  </button>
+);
+
+export default ImageEntry;
+
 // import styled from 'styled-components';
 
 // const Thumbnail = styled.img`
@@ -15,11 +24,3 @@ import React from 'react';
 //   margin-top: 5px;
 //   margin-bottom: 5px;
 // `;
-
-const ImageEntry = ({ image, onClick }) => (
-  <button className="ImageButton" type="button" onClick={(e) => onClick(e)}>
-    <img className="Thumbnail" src={image} alt="" />
-  </button>
-);
-
-export default ImageEntry;
