@@ -35,7 +35,6 @@ class Carousel extends React.Component {
     const height = img.offsetHeight;
     const imgPosX = ((e.nativeEvent.offsetX / width) * 100);
     const imgPosY = ((e.nativeEvent.offsetY / height) * 100);
-    // img.style.transformOrigin = `${imgPosX}% ${imgPosY}%`;
     this.setState({
       x: imgPosX,
       y: imgPosY,
