@@ -1,31 +1,10 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import styled from 'styled-components';
 import ImageBar from './ImageBar.jsx';
-import ZoomBox from './ZoomBox.jsx';
-
-const Wrapper = styled.div`
-display: grid;
-grid-template-columns: 100px 1fr 1fr;
-grid-template-areas:
-"arrowUp"
-"ImageBar ImageBox side"
-"arrowDown";
-background-color: rgb(248, 248, 248)
-`;
-const ImageBox = styled.div`
-  border: 2px solid orange;
-`;
-const NextButton = styled.button`
-`;
-const PrevButton = styled.button`
-
-`;
-const MainImage = styled.img`
-
-`;
-
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -35,16 +14,32 @@ class Carousel extends React.Component {
       images: [],
       defaultImg: [],
       isZoomed: false,
+      x: 0,
+      y: 0,
     };
 
     this.nextImage = this.nextImage.bind(this);
     this.prevImage = this.prevImage.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
-    this.zoomIn = this.zoomIn.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
   }
 
   componentDidMount() {
     this.getImages();
+  }
+
+  onMouseMove(e) {
+    const img = e.target;
+    const width = img.offsetWidth;
+    const height = img.offsetHeight;
+    const imgPosX = ((e.nativeEvent.offsetX / width) * 100);
+    const imgPosY = ((e.nativeEvent.offsetY / height) * 100);
+    // img.style.transformOrigin = `${imgPosX}% ${imgPosY}%`;
+    this.setState({
+      x: imgPosX,
+      y: imgPosY,
+    });
   }
 
   getImages() {
@@ -91,7 +86,7 @@ class Carousel extends React.Component {
     }
     if (index - 1 === -1) {
       this.setState({
-        index: images.length,
+        index: images.length - 1,
         defaultImg: images[index],
       });
     }
@@ -103,7 +98,7 @@ class Carousel extends React.Component {
     });
   }
 
-  zoomIn() {
+  toggleZoom() {
     const { isZoomed } = this.state;
     this.setState({
       isZoomed: !isZoomed,
@@ -114,16 +109,25 @@ class Carousel extends React.Component {
     const { images } = this.state;
     const { defaultImg } = this.state;
     const { isZoomed } = this.state;
+    const { x } = this.state;
+    const { y } = this.state;
     return (
-      <Wrapper>
+      <div className="Wrapper">
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <ImageBox className="mainViewer">
-          <PrevButton type="button" onClick={this.prevImage}>left</PrevButton>
-          <NextButton type="button" onClick={this.nextImage}>right</NextButton>
-          {isZoomed ? <ZoomBox /> : null}
-          <MainImage onClick={this.zoomIn} src={defaultImg} alt="mainView" />
-        </ImageBox>
-      </Wrapper>
+        <div className="ImageBox">
+          <button className="previousImg" type="button" onClick={this.prevImage}>{'<'}</button>
+          <button className="nextImg" type="button" onClick={this.nextImage}> {'>'} </button>
+          <img
+            className={isZoomed ? 'ZoomedImg' : 'MainImage'}
+            onClick={this.toggleZoom}
+            src={defaultImg}
+            alt="mainView"
+            onMouseMove={isZoomed ? this.onMouseMove : null}
+            style={{transformOrigin: `${x}% ${y}%`}}
+            onMouseLeave={isZoomed ? this.toggleZoom : null}
+          />
+        </div>
+      </div>
     );
   }
 }
