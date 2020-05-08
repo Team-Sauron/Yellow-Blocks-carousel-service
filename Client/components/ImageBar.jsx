@@ -1,6 +1,5 @@
 import React from 'react';
 import ImageEntry from './ImageEntry.jsx';
-
 const ImageBar = ({ images, onClick }) => (
   <div className="ImageHolder">
     <button className="ScrollUp" type="button">/\</button>
