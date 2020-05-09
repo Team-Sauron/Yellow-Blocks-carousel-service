@@ -14,7 +14,6 @@ class Carousel extends React.Component {
     this.state = {
       index: 0,
       images: [],
-      defaultImg: [],
       isZoomed: false,
       fullScreen: false,
       x: 0,
@@ -55,7 +54,6 @@ class Carousel extends React.Component {
         const urls = Object.values(data.pictures);
         this.setState({
           images: urls,
-          defaultImg: urls[0],
         });
       },
     });
@@ -64,16 +62,12 @@ class Carousel extends React.Component {
   nextImage() {
     const { images } = this.state;
     let { index } = this.state;
-    if (index + 1 !== images.length) {
+    this.setState({
+      index: index += 1,
+    });
+    if (index === images.length) {
       this.setState({
-        index: index += 1,
-        defaultImg: images[index],
-      });
-    }
-    if (index + 1 === images.length) {
-      this.setState({
-        index: -1,
-        defaultImg: images[index],
+        index: 0,
       });
     }
   }
@@ -81,23 +75,26 @@ class Carousel extends React.Component {
   prevImage() {
     const { images } = this.state;
     let { index } = this.state;
-    if (index - 1 !== -1) {
-      this.setState({
-        index: index -= 1,
-        defaultImg: images[index],
-      });
-    }
-    if (index - 1 === -1) {
+
+    this.setState({
+      index: index -= 1,
+    });
+    if (index === -1) {
       this.setState({
         index: images.length - 1,
-        defaultImg: images[index],
       });
     }
   }
 
   handleImageClick(e) {
+    let imgIndex = e.target.alt;
+    if (imgIndex === undefined) {
+      imgIndex = 3;
+    } else {
+      imgIndex = Number(imgIndex);
+    }
     this.setState({
-      defaultImg: e.target.src,
+      index: imgIndex,
     });
   }
 
@@ -117,8 +114,8 @@ class Carousel extends React.Component {
 
   render() {
     const { images } = this.state;
-    const { defaultImg } = this.state;
     const { isZoomed } = this.state;
+    const { index } = this.state;
     const { x } = this.state;
     const { y } = this.state;
     const { fullScreen } = this.state;
@@ -139,7 +136,7 @@ class Carousel extends React.Component {
           <img
             className={isZoomed ? 'ZoomedImg' : 'MainImage'}
             onClick={this.toggleZoom}
-            src={defaultImg}
+            src={images[index]}
             alt="mainView"
             onMouseMove={this.onMouseMove}
             style={{ transformOrigin: `${x}% ${y}%` }}
