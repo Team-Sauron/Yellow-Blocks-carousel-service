@@ -7,6 +7,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../Db/index.js');
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
