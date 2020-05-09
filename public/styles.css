@@ -11,17 +11,13 @@
 
 #fullScreenContainer {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   display: grid;
   grid-template-columns: 100px 1fr;
   grid-template-areas:
   "ImageBar ImageBox";
-  /* background-color: white; */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  background-color: white;
 }
 
 .ImageBox {
@@ -29,7 +25,6 @@
   height: 610px;
   position: relative;
   overflow: hidden;
-  background-color: white;
 }
 
 .ImageBox:hover .nextImg {

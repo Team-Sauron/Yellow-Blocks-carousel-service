@@ -7,9 +7,10 @@ const ImageBar = ({ images, onClick }) => (
     <button className="ScrollUp" type="button">
       <FaChevronUp size="18px" />
     </button>
-    {images.map((image) => (
+    {images.map((image, key) => (
       <ImageEntry
-        key={image.id}
+        key={key}
+        number={key}
         image={image}
         onClick={(e) => onClick(e)}
       />
