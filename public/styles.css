@@ -36,22 +36,34 @@
 
 .MainImage {
   display: flex;
-  padding: 18px;
+  padding: 20px;
   width: 720px;
   height: 580px;
-  transition: 0.2s;
+  transition-duration: 0.2s;
+  transition: cubic-bezier(0.4, 0, 0.2, 1);
   cursor: url(./zoomincursor.svg) 15 15, zoom-in;
 }
 
 .Fullscreen {
+  display: flex;
+  justify-content: center;
   position: absolute;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   margin-left: 90%;
-  margin-top: 2%;
   background-color: rgb(248, 248, 248);
   border: none;
+  color: cornflowerblue;
+}
+
+.fullScreenLabel {
+  display: flex;
+  margin-left: 87%;
+  position: absolute;
+  margin-top: 36px;
+  color: cornflowerblue;
+  font-size: 18px;
 }
 
 .ZoomedImg {
@@ -66,7 +78,7 @@
 
 .nextImg {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   grid-area: ImageBox;
   position: absolute;
   margin-top: 38%;
@@ -78,11 +90,12 @@
   border-radius: 20px;
   opacity: 0;
   background-color: rgb(44, 44, 44);
+  color: lightgrey;
 }
 
 .previousImg {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   position: absolute;
   width: 40px;
   height: 40px;
@@ -92,25 +105,18 @@
   border-radius: 20px;
   opacity: 0;
   background-color: rgb(44, 44, 44);
+  color: lightgrey;
 }
 
 .nextImg:hover, .previousImg:hover {
   background-color: white;
+  color: black;
 }
 
 .Thumbnail {
   width: 60px;
   height: 45px;
-}
-
-.ImageButton {
-  display: block;
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid lightgrey;
-  margin-left: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  transform: scale(1.1);
 }
 
 .ImageHolder {
@@ -122,12 +128,29 @@
   margin-top: 50%;
 }
 
+.ImageButton {
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .ScrollUp {
   margin-left: 35%;
   cursor: pointer;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  color: grey;
 }
 
 .ScrollDown {
   margin-left: 35%;
   cursor: pointer;
+  border: none;
+  background-color: rgb(248, 248, 248);
+  color: grey;
 }
