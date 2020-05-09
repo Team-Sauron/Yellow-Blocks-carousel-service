@@ -4,7 +4,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import ImageBar from './ImageBar.jsx';
+import { FaChevronLeft, FaChevronRight, FaExpandArrowsAlt } from 'react-icons/fa';
+import { GrClose } from 'react-icons/gr';
+import ImageBar from './ImageBar';
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class Carousel extends React.Component {
       images: [],
       defaultImg: [],
       isZoomed: false,
+      fullScreen: false,
       x: 0,
       y: 0,
     };
@@ -23,6 +26,7 @@ class Carousel extends React.Component {
     this.handleImageClick = this.handleImageClick.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
+    this.toggleFullScreen = this.toggleFullScreen.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +50,7 @@ class Carousel extends React.Component {
     const id = url.slice(url.indexOf('=') + 1);
     $.ajax({
       method: 'GET',
-      url: `/api/images/${id}`,
+      url: `http://localhost:3001/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({
@@ -104,25 +108,41 @@ class Carousel extends React.Component {
     });
   }
 
+  toggleFullScreen() {
+    const { fullScreen } = this.state;
+    this.setState({
+      fullScreen: !fullScreen,
+    });
+  }
+
   render() {
     const { images } = this.state;
     const { defaultImg } = this.state;
     const { isZoomed } = this.state;
     const { x } = this.state;
     const { y } = this.state;
+    const { fullScreen } = this.state;
     return (
-      <div className="Wrapper">
+      <div id={fullScreen ? 'fullScreenContainer' : 'Wrapper'}>
         <ImageBar images={images} onClick={this.handleImageClick} />
         <div className="ImageBox">
-          <button className="previousImg" type="button" onClick={this.prevImage}>{'<'}</button>
-          <button className="nextImg" type="button" onClick={this.nextImage}> {'>'} </button>
+          <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
+            <FaChevronLeft size="18px" />
+          </button>
+          <button className="nextImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}>
+            <FaChevronRight size="18px" />
+          </button>
+          {fullScreen ? null : <div className="fullScreenLabel">Full screen</div>}
+          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen}>
+            {fullScreen ? <GrClose size="18px" /> : <FaExpandArrowsAlt size="18px" />}
+          </button>
           <img
             className={isZoomed ? 'ZoomedImg' : 'MainImage'}
             onClick={this.toggleZoom}
             src={defaultImg}
             alt="mainView"
-            onMouseMove={isZoomed ? this.onMouseMove : null}
-            style={{transformOrigin: `${x}% ${y}%`}}
+            onMouseMove={this.onMouseMove}
+            style={{ transformOrigin: `${x}% ${y}%` }}
             onMouseLeave={isZoomed ? this.toggleZoom : null}
           />
         </div>
