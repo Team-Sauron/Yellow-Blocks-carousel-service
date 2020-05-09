@@ -4,6 +4,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import { FaChevronLeft, FaChevronRight, FaExpandArrowsAlt } from 'react-icons/fa';
+import { GrClose } from 'react-icons/gr';
 import ImageBar from './ImageBar.jsx';
 
 class Carousel extends React.Component {
@@ -125,10 +127,15 @@ class Carousel extends React.Component {
         <ImageBar images={images} onClick={this.handleImageClick} />
         <div className="ImageBox">
           <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
-            <img/>
+            <FaChevronLeft size="18px" />
           </button>
-          <button className="nextImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}> {'>'} </button>
-          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen}> hello </button>
+          <button className="nextImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}>
+            <FaChevronRight size="18px" />
+          </button>
+          {fullScreen ? null : <div className="fullScreenLabel">Full screen</div>}
+          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen}>
+            {fullScreen ? <GrClose size="18px" /> : <FaExpandArrowsAlt size="18px" />}
+          </button>
           <img
             className={isZoomed ? 'ZoomedImg' : 'MainImage'}
             onClick={this.toggleZoom}
