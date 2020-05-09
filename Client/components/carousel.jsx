@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { FaChevronLeft, FaChevronRight, FaExpandArrowsAlt } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
-import ImageBar from './ImageBar.jsx';
+import ImageBar from './ImageBar';
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class Carousel extends React.Component {
     const id = url.slice(url.indexOf('=') + 1);
     $.ajax({
       method: 'GET',
-      url: `/api/images/${id}`,
+      url: `http://localhost:3001/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({
