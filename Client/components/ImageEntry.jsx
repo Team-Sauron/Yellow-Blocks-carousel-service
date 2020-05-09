@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ImageEntry = ({ image, onClick }) => (
+const ImageEntry = ({ image, onClick, number }) => (
   <button className="ImageButton" type="button" onClick={(e) => onClick(e)}>
-    <img className="Thumbnail" src={image} alt="" />
+    <img className="Thumbnail" src={image} alt={number} />
   </button>
 );
 
