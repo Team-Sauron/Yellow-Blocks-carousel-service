@@ -131,7 +131,7 @@ class Carousel extends React.Component {
     return (
       <div id={fullScreen ? 'fullScreenContainer' : 'Wrapper'}>
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <div className="ImageBox">
+        <div className="ImageBox" style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
           <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
             <FaChevronLeft size="18px" />
           </button>
@@ -139,7 +139,7 @@ class Carousel extends React.Component {
             <FaChevronRight size="18px" />
           </button>
           {fullScreen ? null : <div className="fullScreenLabel">Full screen</div>}
-          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen}>
+          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen} style={fullScreen ? { marginLeft: '70%' } : null}>
             {fullScreen ? <GrClose size="18px" /> : <FaExpandArrowsAlt size="18px" />}
           </button>
           <img
