@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "nodemon Server",
+    "start": "node Server",
+    "start-dev": "nodemon server",
     "seed": "node Db/DataGen.js",
     "test": "jest --detectOpenHandles",
     "react-dev": "webpack -d --watch"

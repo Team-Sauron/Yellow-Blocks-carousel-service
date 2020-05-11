@@ -46,7 +46,10 @@ class Carousel extends React.Component {
 
   getImages() {
     const url = window.location.href;
-    const id = url.slice(url.indexOf('=') + 1);
+    let id = url.slice(url.indexOf('=') + 1);
+    if (id === 'http://localhost:3000/') {
+      id = 1;
+    }
     $.ajax({
       method: 'GET',
       url: `http://localhost:3001/api/images/${id}`,
@@ -106,10 +109,16 @@ class Carousel extends React.Component {
   }
 
   toggleFullScreen() {
-    const { fullScreen } = this.state;
+    let { fullScreen } = this.state;
+    fullScreen = !fullScreen;
     this.setState({
-      fullScreen: !fullScreen,
+      fullScreen,
     });
+    if (fullScreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
   render() {
@@ -122,7 +131,7 @@ class Carousel extends React.Component {
     return (
       <div id={fullScreen ? 'fullScreenContainer' : 'Wrapper'}>
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <div className="ImageBox">
+        <div className="ImageBox" style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
           <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
             <FaChevronLeft size="18px" />
           </button>
@@ -130,7 +139,7 @@ class Carousel extends React.Component {
             <FaChevronRight size="18px" />
           </button>
           {fullScreen ? null : <div className="fullScreenLabel">Full screen</div>}
-          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen}>
+          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen} style={fullScreen ? { marginLeft: '70%' } : null}>
             {fullScreen ? <GrClose size="18px" /> : <FaExpandArrowsAlt size="18px" />}
           </button>
           <img
