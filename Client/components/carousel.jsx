@@ -46,7 +46,10 @@ class Carousel extends React.Component {
 
   getImages() {
     const url = window.location.href;
-    const id = url.slice(url.indexOf('=') + 1);
+    let id = url.slice(url.indexOf('=') + 1);
+    if (id === 'http://localhost:3000/') {
+      id = 1;
+    }
     $.ajax({
       method: 'GET',
       url: `http://localhost:3001/api/images/${id}`,
