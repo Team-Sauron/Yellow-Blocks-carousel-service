@@ -109,10 +109,16 @@ class Carousel extends React.Component {
   }
 
   toggleFullScreen() {
-    const { fullScreen } = this.state;
+    let { fullScreen } = this.state;
+    fullScreen = !fullScreen;
     this.setState({
-      fullScreen: !fullScreen,
+      fullScreen,
     });
+    if (fullScreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
   render() {
