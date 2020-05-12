@@ -34,7 +34,7 @@ app.get('/api/images/:id', (req, res) => {
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`listening on http://localhost:${port}`);
+  console.log(`listening on http://18.217.73.144:${port}`);
 });
 
 module.exports = app;

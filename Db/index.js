@@ -6,7 +6,6 @@ mongoose.connect(url, (err) => {
   if (err) {
     return console.log(`FAILED TO CONNECT: ${err}`);
   }
-  return console.log('CONNECTED!');
 });
 
 const { Schema } = mongoose;
