@@ -1,6 +1,6 @@
 const express = require('express');
 
-const port = 3001;
+const port = 80;
 const app = express();
 const path = require('path');
 
@@ -34,7 +34,7 @@ app.get('/api/images/:id', (req, res) => {
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`listening on http://18.217.73.144:${port}`);
+  console.log(`listening on ${port}`);
 });
 
 module.exports = app;
