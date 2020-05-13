@@ -52,7 +52,7 @@ class Carousel extends React.Component {
     }
     $.ajax({
       method: 'GET',
-      url: `/api/images/${id}`,
+      url: `http://18.218.108.215/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({
