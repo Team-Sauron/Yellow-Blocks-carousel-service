@@ -52,7 +52,7 @@ class Carousel extends React.Component {
     }
     $.ajax({
       method: 'GET',
-      url: `http://18.217.73.144:3001/api/images/${id}`,
+      url: `/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({
@@ -131,17 +131,19 @@ class Carousel extends React.Component {
     return (
       <div id={fullScreen ? 'fullScreenContainer' : 'Wrapper'}>
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <div className="ImageBox" style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
+        <div className={fullScreen ? 'fullScreenImageBox' : 'ImageBox'} style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
           <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
             <FaChevronLeft size="18px" />
           </button>
           <button className="nextImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}>
             <FaChevronRight size="18px" />
           </button>
-          {fullScreen ? null : <div className="fullScreenLabel">Full screen</div>}
-          <button className="Fullscreen" type="button" onClick={this.toggleFullScreen} style={fullScreen ? { marginLeft: '70%' } : null}>
-            {fullScreen ? <GrClose size="18px" /> : <FaExpandArrowsAlt size="18px" />}
-          </button>
+          {fullScreen ? null : <div className="fullScreenBtnLabel">Full screen</div>}
+          {fullScreen ? null : (
+            <button className="exapand" type="button" onClick={this.toggleFullScreen}>
+              <FaExpandArrowsAlt size="18px" />
+            </button>
+          ) }
           <img
             className={isZoomed ? 'ZoomedImg' : 'MainImage'}
             onClick={this.toggleZoom}
@@ -152,6 +154,11 @@ class Carousel extends React.Component {
             onMouseLeave={isZoomed ? this.toggleZoom : null}
           />
         </div>
+        {fullScreen ? (
+          <button className="minimize" type="button" onClick={this.toggleFullScreen}>
+            <GrClose size="18px" />
+          </button>
+        ) : null}
       </div>
     );
   }
