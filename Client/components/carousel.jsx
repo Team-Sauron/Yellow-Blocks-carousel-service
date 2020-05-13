@@ -46,9 +46,9 @@ class Carousel extends React.Component {
 
   getImages() {
     const url = window.location.href;
-    let id = url.slice(url.indexOf('=') + 1);
-    if (id === 'http://18.217.73.144:3001/') {
-      id = 1;
+    let id = 1;
+    if (url.indexOf('=') !== -1) {
+      id = url.slice(url.indexOf('=') + 1);
     }
     $.ajax({
       method: 'GET',
