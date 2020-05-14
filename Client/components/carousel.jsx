@@ -47,14 +47,16 @@ class Carousel extends React.Component {
   }
 
   getImages() {
-    const url = window.location.href;
     let id = 1;
-    if (url.indexOf('=') !== -1) {
-      id = url.slice(url.indexOf('=') + 1);
+    const url = window.location.href;
+    const query = url.slice(url.indexOf('?'));
+    const params = new URLSearchParams(query);
+    if (params.get('pid') !== null) {
+      id = params.get('pid');
     }
     $.ajax({
       method: 'GET',
-      url: `/api/images/${id}`,
+      url: `http://3.12.80.94:3001/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({
