@@ -4,32 +4,28 @@ const app = require('../Server/index.js');
 
 const request = supertest(app);
 
-describe('Test to specified routes', () => {
-  test('response product should be 1', async (done) => {
+describe('Test back end requests', () => {
+  test('response product should be 1', async (next) => {
     const response = await request.get('/api/images/1');
     expect(response.body.product).toBe(1);
-    done();
+    next();
   });
-});
 
-describe('Test to specified routes', () => {
-  test('response product to id:12 should be 12', async (done) => {
+  test('response product to id:12 should be 12', async (next) => {
     const response = await request.get('/api/images/12');
     expect(response.body.product).toBe(12);
-    done();
+    next();
   });
-});
 
-describe('Test if id is not in range', () => {
-  test('it should return product number 1 id is over 100', async (done) => {
+  test('it should return product number 1 id is over 100', async (next) => {
     const response = await request.get('/api/images/101');
     expect(response.body.product).toBe(1);
-    done();
+    next();
   });
 
-  test('it should return product 1 if id is less than 0', async (done) => {
+  test('it should return product 1 if id is less than 0', async (next) => {
     const response = await request.get('/api/images/-1');
     expect(response.body.product).toBe(1);
-    done();
+    next();
   });
 });
