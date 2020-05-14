@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -7,6 +8,7 @@ import $ from 'jquery';
 import { FaChevronLeft, FaChevronRight, FaExpandArrowsAlt } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
 import ImageBar from './ImageBar';
+import styles from '../styles/styles.css';
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -52,7 +54,7 @@ class Carousel extends React.Component {
     }
     $.ajax({
       method: 'GET',
-      url: `http://18.218.108.215/api/images/${id}`,
+      url: `/api/images/${id}`,
       success: (data) => {
         const urls = Object.values(data.pictures);
         this.setState({

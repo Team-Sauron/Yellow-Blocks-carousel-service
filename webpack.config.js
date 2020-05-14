@@ -10,16 +10,27 @@ module.exports = {
     path: path.join(__dirname, 'public'),
   },
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
       },
-    }],
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loaders: ['style-loader', 'css-loader'],
+        include: `${__dirname}/Client/styles/`,
+      },
+      {
+        test: /\.svg$/,
+        use: 'file-loader',
+      }],
   },
-  resolve: { extensions: ['.js', '.jsx'] },
+  resolve: { extensions: ['.js', '.jsx', 'css'] },
 };
