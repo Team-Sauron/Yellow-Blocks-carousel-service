@@ -4,7 +4,7 @@ const db = require('./index.js');
 const generateUrls = () => {
   const urls = [];
   for (let i = 0; i <= 50; i += 1) {
-    urls.push(`https://fec-carousel.s3.us-east-2.amazonaws.com/${i}.jpg`);
+    urls.push(`https://fec-carousel.s3.us-east-2.amazonaws.com/${i}.webp`);
   }
   return urls;
 };
