@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "node Server",
+    "start": "node Server/listen.js",
     "start-dev": "nodemon server",
     "seed": "node Db/DataGen.js",
     "test": "jest --detectOpenHandles",
