@@ -1,10 +1,10 @@
 const express = require('express');
 const compression = require('compression');
 
-const port = 3001;
 const app = express();
 const path = require('path');
 
+const port = 3001;
 const bodyParser = require('body-parser');
 const db = require('../Db/index.js');
 
@@ -34,10 +34,6 @@ app.get('/api/images/:id', (req, res) => {
   });
 });
 
-
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`listening on ${port}`);
-});
+app.listen(port);
 
 module.exports = app;
