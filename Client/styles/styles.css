@@ -56,7 +56,7 @@
   height: 580px;
   transition-duration: 0.2s;
   transition: cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: url(./zoomincursor.svg) 15 15, zoom-in;
+  cursor: url("https://fec-carousel.s3.us-east-2.amazonaws.com/zoomincursor.svg") 15 15, zoom-in;
 }
 
 .exapand {
@@ -103,7 +103,7 @@
   height: 580px;
   transition: 0.2s;
   transform: scale(1.4);
-  cursor: url(./zoomOut.svg) 15 15, zoom-out;
+  cursor: url("https://fec-carousel.s3.us-east-2.amazonaws.com/zoomOut.svg") 15 15, zoom-out;
 }
 
 .nextImg {
