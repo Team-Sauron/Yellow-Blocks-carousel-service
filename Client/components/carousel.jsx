@@ -133,23 +133,23 @@ class Carousel extends React.Component {
     const { y } = this.state;
     const { fullScreen } = this.state;
     return (
-      <div id={fullScreen ? 'fullScreenContainer' : 'Wrapper'}>
+      <div id={fullScreen ? styles.fullScreenContainer : styles.Wrapper}>
         <ImageBar images={images} onClick={this.handleImageClick} />
-        <div className={fullScreen ? 'fullScreenImageBox' : 'ImageBox'} style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
-          <button className="previousImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
+        <div className={fullScreen ? styles.fullScreenImageBox : styles.ImageBox} style={fullScreen ? { marginLeft: '18%', marginTop: '5%' } : null}>
+          <button className={styles.previousImg} type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.prevImage}>
             <FaChevronLeft size="18px" />
           </button>
-          <button className="nextImg" type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}>
+          <button className={styles.nextImg} type="button" style={fullScreen ? { display: 'none' } : null} onClick={this.nextImage}>
             <FaChevronRight size="18px" />
           </button>
-          {fullScreen ? null : <div className="fullScreenBtnLabel">Full screen</div>}
+          {fullScreen ? null : <div className={styles.fullScreenBtnLabel}>Full screen</div>}
           {fullScreen ? null : (
-            <button className="exapand" type="button" onClick={this.toggleFullScreen}>
+            <button className={styles.exapand} type="button" onClick={this.toggleFullScreen}>
               <FaExpandArrowsAlt size="18px" />
             </button>
           ) }
           <img
-            className={isZoomed ? 'ZoomedImg' : 'MainImage'}
+            className={isZoomed ? styles.ZoomedImg : styles.MainImage}
             onClick={this.toggleZoom}
             src={images[index]}
             alt="mainView"
@@ -159,7 +159,7 @@ class Carousel extends React.Component {
           />
         </div>
         {fullScreen ? (
-          <button className="minimize" type="button" onClick={this.toggleFullScreen}>
+          <button className={styles.minimize} type="button" onClick={this.toggleFullScreen}>
             <GrClose size="18px" />
           </button>
         ) : null}
