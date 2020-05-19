@@ -3,7 +3,11 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
+  - https://github.com/Team-Sauron/smego-reviews-service
+
+  - https://github.com/Team-Sauron/smego-accordion
+
+  - https://github.com/Team-Sauron/smego-info-section
 
 ## Table of Contents
 
@@ -27,6 +31,7 @@
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
+npm run build for webpack
+npm run seed to seed db
 ```
