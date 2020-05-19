@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../styles/styles.css';
 
 const ImageEntry = ({ image, onClick, number }) => (
-  <button className="ImageButton" type="button" onClick={(e) => onClick(e)}>
-    <img className="Thumbnail" src={image} alt={number} />
+  <button className={styles.ImageButton} type="button" onClick={(e) => onClick(e)}>
+    <img className={styles.Thumbnail} src={image} alt={number} />
   </button>
 );
 

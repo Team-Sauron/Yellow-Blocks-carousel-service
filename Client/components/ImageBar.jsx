@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import styles from '../styles/styles.css';
 import ImageEntry from './ImageEntry';
 
 const ImageBar = ({ images, onClick }) => (
-  <div className="ImageHolder">
-    <button className="ScrollUp" type="button">
+  <div className={styles.ImageHolder}>
+    <button className={styles.ScrollUp} type="button">
       <FaChevronUp size="18px" />
     </button>
     {images.map((image, key) => (
@@ -15,7 +16,7 @@ const ImageBar = ({ images, onClick }) => (
         onClick={(e) => onClick(e)}
       />
     ))}
-    <button className="ScrollDown" type="button">
+    <button className={styles.ScrollDown} type="button">
       <FaChevronDown size="18px" />
     </button>
   </div>
