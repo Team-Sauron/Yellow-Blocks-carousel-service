@@ -1,5 +1,6 @@
 # carousel-service#
-> Project description
+
+Renders a dynamic image viewer showcasing a product. The user has the ability to zoom in on the image, scroll through in order, click on a thumbnail to view that specific image, and make the image fullscreen.
 
 ## Related Projects
 
