@@ -16,16 +16,6 @@ Renders a dynamic image viewer showcasing a product. The user has the ability to
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-- Node 12.16.1
-- etc
-
-## Development
 
 ### Installing Dependencies
 
